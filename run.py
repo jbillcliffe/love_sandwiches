@@ -85,6 +85,27 @@ def update_selected_worksheet(data, worksheet):
     print(f"{worksheet.capitalize()} update made successfully.\n")
 
 
+def get_last_five_sales():
+    """
+    Collects columns of data from sales, getting most recent
+    five rows per sandwich as a list of lists
+    """
+    sales = SHEET.worksheet("sales")
+
+    columns = []
+
+    for ind in range(1, 7):
+        column = sales.col_values(ind)
+        columns.append(column)
+
+    return columns
+    # print("\n")
+    # for each_column in columns:
+    #     del each_column[1:3]
+    # 
+    # pprint(columns)
+
+
 def main():
     """
     Run all program functions
@@ -97,4 +118,5 @@ def main():
 
 
 print("Welcome to Love Sandwiches Data Automation\n")
-main()
+# main()
+sales_columns = get_last_five_sales()
