@@ -132,8 +132,21 @@ def main():
     sales_columns = get_last_five_sales()
     stock_data = calculate_stock_data(sales_columns)
     update_selected_worksheet(stock_data, "stock")
+    return stock_data
     # 27,27,36,26,32,31
 
 
 print("Welcome to Love Sandwiches Data Automation\n")
-main()
+stock_data = main()
+# stock_data = [28, 31, 36, 28, 31, 33]
+
+
+def get_stock_values(data):
+    headings = SHEET.worksheet("stock").row_values(1)
+    dictionary = {headings[i]: data[i] for i in range(len(headings))}
+    return dictionary
+
+
+stock_values = get_stock_values(stock_data)
+print("Make the following sandwiches for the next market : \n")
+print(stock_values)
